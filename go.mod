@@ -1,4 +1,4 @@
-module github.com/gopcua/opcua
+module github.com/wb4u-fox/opcua-wb4u
 
 go 1.23
 
