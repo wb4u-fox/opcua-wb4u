@@ -360,7 +360,7 @@ func (c *Conn) Receive() ([]byte, error) {
 	// TODO(kung-foo): allow user-specified buffer
 	// TODO(kung-foo): sync.Pool
 	 // 设置读取超时
-    if err := c.SetReadDeadline(time.Now().Add(30 * time.Second)); err != nil {
+    if err := c.SetReadDeadline(time.Now().Add(10 * time.Second)); err != nil {
         return nil, err
     }
     
