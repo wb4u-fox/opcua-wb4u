@@ -359,6 +359,14 @@ const hdrlen = 8
 func (c *Conn) Receive() ([]byte, error) {
 	// TODO(kung-foo): allow user-specified buffer
 	// TODO(kung-foo): sync.Pool
+	 // 设置读取超时
+    if err := c.SetReadDeadline(time.Now().Add(30 * time.Second)); err != nil {
+        return nil, err
+    }
+    
+    // 在函数结束时清除截止时间
+    defer c.SetReadDeadline(time.Time{})
+	
 	b := make([]byte, c.ack.ReceiveBufSize)
 
 	if _, err := io.ReadFull(c, b[:hdrlen]); err != nil {
